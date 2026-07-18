@@ -7,6 +7,7 @@ import Experience from './sections/Experience';
 import Resume from './sections/Resume';
 import Contact from './sections/Contact';
 import Footer from './sections/Footer';
+import BackToTop from './components/BackToTop';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Contact />
         <Footer />
       </main>
+      <BackToTop />
     </>
   );
 }
