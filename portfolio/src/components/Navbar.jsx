@@ -9,7 +9,7 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
-    const sections = ['about', 'skills', 'projects', 'experience', 'contact'];
+    const sections = ['home', 'about', 'skills', 'projects', 'experience', 'contact'];
     
     const observer = new IntersectionObserver(
       (entries) => {
@@ -42,7 +42,7 @@ export default function Navbar() {
   return (
     <nav className="fixed w-full top-0 z-50 transition-all duration-300 bg-background/80 backdrop-blur-md border-b border-slate-700/50">
       <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center relative">
-        <a href="#hero" className="text-2xl font-bold text-textMain">
+        <a href="#home" className="text-2xl font-bold text-textMain">
           Alankit<span className="text-primary">.</span>
         </a>
 
