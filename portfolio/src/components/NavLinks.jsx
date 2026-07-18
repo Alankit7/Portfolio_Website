@@ -1,4 +1,6 @@
-export default function NavLinks({ activeSection, onClick }) {
+import { memo } from 'react';
+
+const NavLinks = ({ activeSection, onClick }) => {
   const links = ['About', 'Skills', 'Projects', 'Experience', 'Contact'];
 
   return (
@@ -24,4 +26,6 @@ export default function NavLinks({ activeSection, onClick }) {
       })}
     </>
   );
-}
+};
+
+export default memo(NavLinks);

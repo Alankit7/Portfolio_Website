@@ -1,8 +1,9 @@
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
 import { fadeIn } from '../utils/motion';
 
-export default function ProjectCard({ project, index = 0 }) {
+const ProjectCard = ({ project, index = 0 }) => {
   // Combine the specific exit animation requirement with the imported fadeIn variant
   const cardVariants = {
     ...fadeIn('up', 'spring', index * 0.1, 0.75),
@@ -26,6 +27,7 @@ export default function ProjectCard({ project, index = 0 }) {
           src={project.image}
           alt={project.title}
           loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
         {/* Featured badge */}
@@ -74,4 +76,6 @@ export default function ProjectCard({ project, index = 0 }) {
       </div>
     </motion.div>
   );
-}
+};
+
+export default memo(ProjectCard);
