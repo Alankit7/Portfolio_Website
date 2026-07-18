@@ -12,6 +12,14 @@ export default {
         '2xl': '1200px',
       },
     },
+    screens: {
+      'xs': '320px',
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1440px',
+      '2xl': '1536px',
+    },
     extend: {
       colors: {
         background: '#0F172A',

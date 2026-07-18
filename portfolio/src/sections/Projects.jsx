@@ -92,7 +92,7 @@ export default function Projects() {
 
       {/* Grid */}
       {filteredProjects.length > 0 ? (
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mt-12">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
               <ProjectCard key={project.id} project={project} index={index} />

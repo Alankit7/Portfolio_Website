@@ -69,22 +69,22 @@ export default function About() {
           </div>
 
           {/* Mini-timeline */}
-          <div className="border-l-2 border-slate-700 ml-3 pl-6 space-y-6">
+          <div className="border-l-2 border-slate-700 ml-2 pl-4 sm:ml-3 sm:pl-6 space-y-6">
             <div className="relative">
-              <span className="absolute -left-[29px] top-1 h-3 w-3 rounded-full bg-primary ring-4 ring-background"></span>
-              <p className="text-textSecondary">
+              <span className="absolute -left-[21px] sm:-left-[29px] top-1 h-3 w-3 rounded-full bg-primary ring-4 ring-background"></span>
+              <p className="text-textSecondary text-sm sm:text-base">
                 <strong className="text-textMain font-medium">Current</strong> — Exploring Full-Stack & AI Orchestration (LangChain, Gemini API)
               </p>
             </div>
             <div className="relative">
-              <span className="absolute -left-[29px] top-1 h-3 w-3 rounded-full bg-slate-600 ring-4 ring-background"></span>
-              <p className="text-textSecondary">
+              <span className="absolute -left-[21px] sm:-left-[29px] top-1 h-3 w-3 rounded-full bg-slate-600 ring-4 ring-background"></span>
+              <p className="text-textSecondary text-sm sm:text-base">
                 Completed 1-Month AI Development Internship at Progression School
               </p>
             </div>
             <div className="relative">
-              <span className="absolute -left-[29px] top-1 h-3 w-3 rounded-full bg-slate-600 ring-4 ring-background"></span>
-              <p className="text-textSecondary">
+              <span className="absolute -left-[21px] sm:-left-[29px] top-1 h-3 w-3 rounded-full bg-slate-600 ring-4 ring-background"></span>
+              <p className="text-textSecondary text-sm sm:text-base">
                 Selected in Top 5 for AI-Insights Habit Tracker Project
               </p>
             </div>
@@ -96,38 +96,38 @@ export default function About() {
       <motion.div 
         ref={statsRef}
         variants={fadeIn('up', 'tween', 0.1, 0.5)}
-        className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16"
+        className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-16"
       >
         {/* Stat 1 */}
-        <div className="text-center p-6 bg-card rounded-2xl border border-slate-700/50">
-          <h4 className="text-3xl md:text-4xl font-bold text-textMain mb-2">
+        <div className="text-center p-4 sm:p-6 bg-card rounded-2xl border border-slate-700/50">
+          <h4 className="text-2xl sm:text-3xl md:text-4xl font-bold text-textMain mb-2">
             {statsInView ? <CountUp start={0} end={5} suffix="+" duration={2.5} /> : '0+'}
           </h4>
-          <p className="text-textSecondary text-sm md:text-base">Projects Built</p>
+          <p className="text-textSecondary text-xs sm:text-sm md:text-base">Projects Built</p>
         </div>
 
         {/* Stat 2 */}
-        <div className="text-center p-6 bg-card rounded-2xl border border-slate-700/50">
-          <h4 className="text-3xl md:text-4xl font-bold text-textMain mb-2">
+        <div className="text-center p-4 sm:p-6 bg-card rounded-2xl border border-slate-700/50">
+          <h4 className="text-2xl sm:text-3xl md:text-4xl font-bold text-textMain mb-2">
             {statsInView ? <CountUp start={0} end={300} suffix="+" duration={2.5} /> : '0+'}
           </h4>
-          <p className="text-textSecondary text-sm md:text-base">LeetCode Problems</p>
+          <p className="text-textSecondary text-xs sm:text-sm md:text-base">LeetCode Problems</p>
         </div>
 
         {/* Stat 3 */}
-        <div className="text-center p-6 bg-card rounded-2xl border border-slate-700/50">
-          <h4 className="text-3xl md:text-4xl font-bold text-textMain mb-2">
+        <div className="text-center p-4 sm:p-6 bg-card rounded-2xl border border-slate-700/50">
+          <h4 className="text-2xl sm:text-3xl md:text-4xl font-bold text-textMain mb-2">
             {statsInView ? <CountUp start={0} end={120} suffix="+" duration={2.5} /> : '0+'}
           </h4>
-          <p className="text-textSecondary text-sm md:text-base">Lessons in AI Internship</p>
+          <p className="text-textSecondary text-xs sm:text-sm md:text-base">Lessons in AI Internship</p>
         </div>
 
         {/* Stat 4 */}
-        <div className="text-center p-6 bg-card rounded-2xl border border-slate-700/50">
-          <h4 className="text-3xl md:text-4xl font-bold text-textMain mb-2">
+        <div className="text-center p-4 sm:p-6 bg-card rounded-2xl border border-slate-700/50">
+          <h4 className="text-2xl sm:text-3xl md:text-4xl font-bold text-textMain mb-2">
             {statsInView ? <CountUp start={0} end={9.3} decimals={1} suffix="+" duration={2.5} /> : '0.0+'}
           </h4>
-          <p className="text-textSecondary text-sm md:text-base">CGPA</p>
+          <p className="text-textSecondary text-xs sm:text-sm md:text-base">CGPA</p>
         </div>
       </motion.div>
     </motion.section>
