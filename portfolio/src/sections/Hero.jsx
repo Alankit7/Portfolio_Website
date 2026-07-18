@@ -93,6 +93,9 @@ export default function Hero() {
             <img 
               src={profileImg} 
               alt="Portrait of Alankit" 
+              fetchpriority="high"
+              width="384"
+              height="384"
               className="w-72 h-72 md:w-96 md:h-96 object-cover rounded-2xl border-2 border-primary/30 shadow-glow"
             />
           </motion.div>
