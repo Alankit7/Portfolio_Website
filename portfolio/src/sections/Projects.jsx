@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiSearch } from 'react-icons/fi';
 import { projectsData } from '../data/projects';
 import ProjectCard from '../components/ProjectCard';
+import { staggerContainer, fadeIn } from '../utils/motion';
 
 export default function Projects() {
   const [filter, setFilter] = useState('All');
@@ -36,23 +37,26 @@ export default function Projects() {
   }, [filter, search]);
 
   return (
-    <section id="projects" className="section-container">
+    <motion.section 
+      id="projects" 
+      className="section-container"
+      variants={staggerContainer()}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.15 }}
+    >
       
       {/* Header & Search UI */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
         <motion.h2 
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          variants={fadeIn('right', 'tween', 0.1, 0.5)}
           className="text-3xl md:text-4xl font-bold text-textMain"
         >
           Featured <span className="text-primary">Projects</span>
         </motion.h2>
 
         <motion.div 
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          variants={fadeIn('left', 'tween', 0.1, 0.5)}
           className="relative w-full max-w-md"
         >
           <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
@@ -68,9 +72,7 @@ export default function Projects() {
 
       {/* Category Tabs */}
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        variants={fadeIn('up', 'tween', 0.2, 0.5)}
         className="flex flex-wrap gap-3 mb-10"
       >
         {categories.map(cat => (
@@ -92,8 +94,8 @@ export default function Projects() {
       {filteredProjects.length > 0 ? (
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map(project => (
-              <ProjectCard key={project.id} project={project} />
+            {filteredProjects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} index={index} />
             ))}
           </AnimatePresence>
         </motion.div>
@@ -113,6 +115,6 @@ export default function Projects() {
         </motion.div>
       )}
 
-    </section>
+    </motion.section>
   );
 }

@@ -1,14 +1,23 @@
 import { motion } from 'framer-motion';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import { fadeIn } from '../utils/motion';
 
-export default function ProjectCard({ project }) {
+export default function ProjectCard({ project, index = 0 }) {
+  // Combine the specific exit animation requirement with the imported fadeIn variant
+  const cardVariants = {
+    ...fadeIn('up', 'spring', index * 0.1, 0.75),
+    exit: { opacity: 0, scale: 0.9 }, // Required for popLayout AnimatePresence
+  };
+
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.3 }}
+      variants={cardVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.1 }}
+      exit="exit"
+      whileHover={{ y: -8 }}
       className="card overflow-hidden p-0 group flex flex-col h-full"
     >
       {/* Image wrapper */}

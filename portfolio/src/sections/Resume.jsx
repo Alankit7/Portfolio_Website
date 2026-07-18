@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiDownload, FiEye, FiFileText, FiCheckCircle, FiCalendar, FiX, FiExternalLink } from 'react-icons/fi';
+import { staggerContainer, fadeIn } from '../utils/motion';
 
 export default function Resume() {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
@@ -28,12 +29,17 @@ export default function Resume() {
   }, [isPreviewOpen]);
 
   return (
-    <section id="resume" className="section-container">
+    <motion.section 
+      id="resume" 
+      className="section-container"
+      variants={staggerContainer()}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.15 }}
+    >
       <motion.div 
         className="max-w-5xl mx-auto bg-card rounded-2xl p-8 md:p-12 border border-slate-700/50 shadow-lg flex flex-col md:flex-row gap-12 items-center"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        variants={fadeIn('up', 'tween', 0.1, 0.5)}
       >
         {/* Left side — visual preview trigger */}
         <div 
@@ -88,21 +94,25 @@ export default function Resume() {
           </div>
 
           <div className="flex flex-wrap gap-4">
-            <a 
+            <motion.a 
               href="/resume.pdf" 
               download 
               className="btn-primary flex items-center gap-2"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               <FiDownload /> Download Resume
-            </a>
-            <a 
+            </motion.a>
+            <motion.a 
               href="/resume.pdf" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="px-6 py-3 border border-slate-700 text-textMain rounded-lg hover:border-primary transition-colors flex items-center gap-2"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               <FiExternalLink /> Open in Tab
-            </a>
+            </motion.a>
           </div>
         </div>
       </motion.div>
@@ -143,6 +153,6 @@ export default function Resume() {
           </div>
         )}
       </AnimatePresence>
-    </section>
+    </motion.section>
   );
 }

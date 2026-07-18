@@ -1,16 +1,22 @@
 import { motion } from 'framer-motion';
 import { Tooltip } from 'react-tooltip';
 import { skillsData } from '../data/skills';
+import { staggerContainer, fadeIn } from '../utils/motion';
 
 export default function Skills() {
   return (
-    <section id="skills" className="section-container relative">
+    <motion.section 
+      id="skills" 
+      className="section-container relative"
+      variants={staggerContainer()}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.15 }}
+    >
       {/* A. Section header */}
       <motion.h2
         className="text-3xl md:text-4xl font-bold text-textMain mb-12 text-center"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        variants={fadeIn('up', 'tween', 0.1, 0.5)}
       >
         Technical <span className="text-primary">Skills</span>
       </motion.h2>
@@ -53,6 +59,6 @@ export default function Skills() {
         place="top"
         className="!bg-primary !text-white !rounded-md !px-3 !py-1 !text-xs"
       />
-    </section>
+    </motion.section>
   );
 }
