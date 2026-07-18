@@ -1,39 +1,24 @@
 import { motion } from 'framer-motion';
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
+import { staggerContainer, fadeIn } from '../utils/motion';
 
 export default function About() {
   const { ref: statsRef, inView: statsInView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
-  const fadeUpVariant = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const statItemVariant = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-  };
-
   return (
-    <section id="about" className="section-container">
+    <motion.section 
+      id="about" 
+      className="section-container"
+      variants={staggerContainer()}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.15 }}
+    >
       {/* A. Section header */}
       <motion.h2 
         className="text-3xl md:text-4xl font-bold text-textMain mb-12"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={fadeUpVariant}
+        variants={fadeIn('up', 'tween', 0.1, 0.5)}
       >
         About <span className="text-primary">Me</span>
       </motion.h2>
@@ -43,10 +28,7 @@ export default function About() {
         
         {/* C. Left Column — Summary */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUpVariant}
+          variants={fadeIn('up', 'tween', 0.1, 0.5)}
           className="flex flex-col gap-6"
         >
           <p className="text-lg text-textSecondary leading-relaxed">
@@ -69,10 +51,7 @@ export default function About() {
 
         {/* D. Right Column — Education & Timeline */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUpVariant}
+          variants={fadeIn('up', 'tween', 0.1, 0.5)}
           className="flex flex-col gap-8"
         >
           {/* Education Card */}
@@ -116,44 +95,41 @@ export default function About() {
       {/* E. Bottom row — Animated counters */}
       <motion.div 
         ref={statsRef}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={staggerContainer}
+        variants={fadeIn('up', 'tween', 0.1, 0.5)}
         className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16"
       >
         {/* Stat 1 */}
-        <motion.div variants={statItemVariant} className="text-center p-6 bg-card rounded-2xl border border-slate-700/50">
+        <div className="text-center p-6 bg-card rounded-2xl border border-slate-700/50">
           <h4 className="text-3xl md:text-4xl font-bold text-textMain mb-2">
             {statsInView ? <CountUp start={0} end={5} suffix="+" duration={2.5} /> : '0+'}
           </h4>
           <p className="text-textSecondary text-sm md:text-base">Projects Built</p>
-        </motion.div>
+        </div>
 
         {/* Stat 2 */}
-        <motion.div variants={statItemVariant} className="text-center p-6 bg-card rounded-2xl border border-slate-700/50">
+        <div className="text-center p-6 bg-card rounded-2xl border border-slate-700/50">
           <h4 className="text-3xl md:text-4xl font-bold text-textMain mb-2">
             {statsInView ? <CountUp start={0} end={300} suffix="+" duration={2.5} /> : '0+'}
           </h4>
           <p className="text-textSecondary text-sm md:text-base">LeetCode Problems</p>
-        </motion.div>
+        </div>
 
         {/* Stat 3 */}
-        <motion.div variants={statItemVariant} className="text-center p-6 bg-card rounded-2xl border border-slate-700/50">
+        <div className="text-center p-6 bg-card rounded-2xl border border-slate-700/50">
           <h4 className="text-3xl md:text-4xl font-bold text-textMain mb-2">
             {statsInView ? <CountUp start={0} end={120} suffix="+" duration={2.5} /> : '0+'}
           </h4>
           <p className="text-textSecondary text-sm md:text-base">Lessons in AI Internship</p>
-        </motion.div>
+        </div>
 
         {/* Stat 4 */}
-        <motion.div variants={statItemVariant} className="text-center p-6 bg-card rounded-2xl border border-slate-700/50">
+        <div className="text-center p-6 bg-card rounded-2xl border border-slate-700/50">
           <h4 className="text-3xl md:text-4xl font-bold text-textMain mb-2">
             {statsInView ? <CountUp start={0} end={9.3} decimals={1} suffix="+" duration={2.5} /> : '0.0+'}
           </h4>
           <p className="text-textSecondary text-sm md:text-base">CGPA</p>
-        </motion.div>
+        </div>
       </motion.div>
-    </section>
+    </motion.section>
   );
 }

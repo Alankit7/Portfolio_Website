@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import emailjs from '@emailjs/browser';
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaGlobe } from 'react-icons/fa';
+import { staggerContainer, fadeIn } from '../utils/motion';
 
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
@@ -54,17 +55,25 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="section-container">
-      <h2 className="text-3xl md:text-4xl font-bold text-textMain mb-12 text-center">
+    <motion.section 
+      id="contact" 
+      className="section-container"
+      variants={staggerContainer()}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.15 }}
+    >
+      <motion.h2 
+        variants={fadeIn('up', 'tween', 0.1, 0.5)}
+        className="text-3xl md:text-4xl font-bold text-textMain mb-12 text-center"
+      >
         Get In <span className="text-primary">Touch</span>
-      </h2>
+      </motion.h2>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto w-full">
         {/* Left column — Social links */}
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          variants={fadeIn('right', 'tween', 0.2, 0.5)}
           className="flex flex-col"
         >
           <h3 className="text-2xl font-semibold text-textMain mb-4">Let's Connect</h3>
@@ -91,9 +100,7 @@ export default function Contact() {
 
         {/* Right column — Contact form */}
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          variants={fadeIn('left', 'tween', 0.2, 0.5)}
         >
           <form 
             ref={formRef} 
@@ -185,6 +192,6 @@ export default function Contact() {
           </form>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
