@@ -26,10 +26,10 @@ export default function Hero() {
           <span className="text-xl text-primary font-medium">
             Hi, I'm
           </span>
-          <h1 className="text-5xl md:text-7xl font-bold text-textMain mt-2">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-textMain mt-2">
             Alankit
           </h1>
-          <div className="text-3xl md:text-5xl text-textSecondary mt-4 font-semibold h-20 md:h-24">
+          <div className="text-2xl sm:text-3xl md:text-5xl text-textSecondary mt-4 font-semibold h-20 md:h-24">
             <TypeAnimation
               sequence={[
                 'AI & Data Science Student',
@@ -50,7 +50,7 @@ export default function Hero() {
             Currently focused on blending machine learning with modern frontend architectures.
           </p>
           
-          <div className="flex gap-4 mt-8">
+          <div className="flex flex-col sm:flex-row gap-4 mt-8">
             <motion.a 
               href="#projects" 
               className="btn-primary"
@@ -61,7 +61,7 @@ export default function Hero() {
             </motion.a>
             <motion.a 
               href="#contact" 
-              className="px-6 py-3 border border-slate-700 rounded-lg hover:border-primary text-textMain transition-colors"
+              className="px-6 py-3 border border-slate-700 rounded-lg hover:border-primary text-textMain transition-colors text-center"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

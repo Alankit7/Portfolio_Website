@@ -21,7 +21,7 @@ export default function ProjectCard({ project, index = 0 }) {
       className="card overflow-hidden p-0 group flex flex-col h-full"
     >
       {/* Image wrapper */}
-      <div className="relative h-48 overflow-hidden">
+      <div className="relative aspect-video sm:h-48 overflow-hidden">
         <img
           src={project.image}
           alt={project.title}

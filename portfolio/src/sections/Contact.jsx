@@ -105,7 +105,7 @@ export default function Contact() {
           <form 
             ref={formRef} 
             onSubmit={handleSubmit(onSubmit)} 
-            className="bg-card p-8 rounded-2xl border border-slate-700/50 shadow-lg space-y-6"
+            className="bg-card p-6 sm:p-8 rounded-2xl border border-slate-700/50 shadow-lg space-y-6"
           >
             {/* Name */}
             <div>
