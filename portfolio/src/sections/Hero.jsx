@@ -8,9 +8,9 @@ export default function Hero() {
   return (
     <section id="home" className="section-container min-h-screen pt-28 relative overflow-hidden">
       {/* Floating Background Elements */}
-      <div className="absolute top-1/4 -left-10 w-72 h-72 bg-primary/20 blur-3xl rounded-full -z-10 animate-float" style={{ animationDelay: '0s' }}></div>
-      <div className="absolute bottom-1/4 right-10 w-72 h-72 bg-blue-500/20 blur-3xl rounded-full -z-10 animate-float" style={{ animationDelay: '2s' }}></div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/10 blur-3xl rounded-full -z-10 animate-float" style={{ animationDelay: '4s' }}></div>
+      <div aria-hidden="true" className="absolute top-1/4 -left-10 w-72 h-72 bg-primary/20 blur-3xl rounded-full -z-10 animate-float" style={{ animationDelay: '0s' }}></div>
+      <div aria-hidden="true" className="absolute bottom-1/4 right-10 w-72 h-72 bg-blue-500/20 blur-3xl rounded-full -z-10 animate-float" style={{ animationDelay: '2s' }}></div>
+      <div aria-hidden="true" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/10 blur-3xl rounded-full -z-10 animate-float" style={{ animationDelay: '4s' }}></div>
 
       <motion.div 
         variants={staggerContainer()}
@@ -61,7 +61,7 @@ export default function Hero() {
             </motion.a>
             <motion.a 
               href="#contact" 
-              className="px-6 py-3 border border-slate-700 rounded-lg hover:border-primary text-textMain transition-colors text-center"
+              className="px-6 py-3 border border-slate-700 rounded-lg hover:border-primary text-textMain transition-colors text-center focus-ring"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -71,13 +71,13 @@ export default function Hero() {
 
           {/* Social Links */}
           <div className="flex gap-6 mt-10 text-2xl text-textSecondary">
-            <motion.a href="#" whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.95 }} className="hover:text-primary transition-colors">
+            <motion.a href="#" aria-label="Open GitHub profile" whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.95 }} className="hover:text-primary transition-colors focus-ring rounded-sm">
               <FaGithub />
             </motion.a>
-            <motion.a href="#" whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.95 }} className="hover:text-primary transition-colors">
+            <motion.a href="#" aria-label="Open LinkedIn profile" whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.95 }} className="hover:text-primary transition-colors focus-ring rounded-sm">
               <FaLinkedin />
             </motion.a>
-            <motion.a href="#" whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.95 }} className="hover:text-primary transition-colors">
+            <motion.a href="#" aria-label="Open Twitter profile" whileHover={{ scale: 1.15 }} whileTap={{ scale: 0.95 }} className="hover:text-primary transition-colors focus-ring rounded-sm">
               <FaTwitter />
             </motion.a>
           </div>
@@ -92,7 +92,7 @@ export default function Hero() {
           >
             <img 
               src={profileImg} 
-              alt="Alankit - Profile Placeholder" 
+              alt="Portrait of Alankit" 
               className="w-72 h-72 md:w-96 md:h-96 object-cover rounded-2xl border-2 border-primary/30 shadow-glow"
             />
           </motion.div>

@@ -15,9 +15,9 @@ export default function Navbar() {
   const activeSection = useScrollSpy(sectionIds, -100);
 
   return (
-    <nav className="fixed w-full top-0 z-50 transition-all duration-300 bg-background/80 backdrop-blur-md border-b border-slate-700/50">
+    <nav aria-label="Main navigation" className="fixed w-full top-0 z-50 transition-all duration-300 bg-background/80 backdrop-blur-md border-b border-slate-700/50">
       <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center relative">
-        <a href="#home" className="text-2xl font-bold text-textMain">
+        <a href="#home" className="text-2xl font-bold text-textMain focus-ring rounded-sm">
           Alankit<span className="text-primary">.</span>
         </a>
 
@@ -29,10 +29,13 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button 
-          className="md:hidden text-textMain text-2xl"
+          className="md:hidden text-textMain text-2xl focus-ring rounded-sm"
           onClick={() => setIsOpen(!isOpen)}
+          aria-expanded={isOpen}
+          aria-controls="mobile-menu"
+          aria-label="Toggle mobile menu"
         >
-          {isOpen ? <FiX /> : <FiMenu />}
+          {isOpen ? <FiX aria-hidden="true" /> : <FiMenu aria-hidden="true" />}
         </button>
       </div>
 

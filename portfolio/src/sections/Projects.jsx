@@ -59,13 +59,14 @@ export default function Projects() {
           variants={fadeIn('left', 'tween', 0.1, 0.5)}
           className="relative w-full max-w-md"
         >
-          <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+          <FiSearch aria-hidden="true" className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
           <input
             type="text"
+            aria-label="Search projects"
             placeholder="Search projects by title or tech..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="bg-background border border-slate-700 rounded-lg pl-10 pr-4 py-2 w-full focus:border-primary focus:outline-none text-textMain transition-colors"
+            className="bg-background border border-slate-700 rounded-lg pl-10 pr-4 py-2 w-full focus:border-primary focus:outline-none text-textMain transition-colors focus-ring"
           />
         </motion.div>
       </div>
@@ -79,7 +80,8 @@ export default function Projects() {
           <button
             key={cat}
             onClick={() => setFilter(cat)}
-            className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+            aria-pressed={filter === cat}
+            className={`rounded-full px-4 py-2 text-sm font-medium transition-colors focus-ring ${
               filter === cat 
                 ? 'bg-primary text-white' 
                 : 'bg-card text-textSecondary hover:bg-slate-800'
@@ -108,7 +110,7 @@ export default function Projects() {
           <p className="text-textSecondary text-lg mb-2">No projects found matching your criteria.</p>
           <button 
             onClick={() => { setSearch(''); setFilter('All'); }}
-            className="text-primary hover:underline"
+            className="text-primary hover:underline focus-ring rounded-sm"
           >
             Clear filters
           </button>

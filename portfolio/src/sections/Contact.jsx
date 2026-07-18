@@ -87,11 +87,12 @@ export default function Contact() {
               <a
                 key={link.label}
                 href={link.href}
+                aria-label={`Open ${link.label}`}
                 target={link.href.startsWith('mailto:') ? undefined : '_blank'}
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 rounded-xl bg-card border border-slate-700/50 hover:border-primary hover:-translate-y-1 hover:shadow-glow transition-all duration-300 text-textSecondary hover:text-primary"
+                className="flex items-center gap-4 p-4 rounded-xl bg-card border border-slate-700/50 hover:border-primary hover:-translate-y-1 hover:shadow-glow transition-all duration-300 text-textSecondary hover:text-primary focus-ring"
               >
-                <div className="text-2xl">{link.icon}</div>
+                <div className="text-2xl" aria-hidden="true">{link.icon}</div>
                 <span className="font-medium">{link.label}</span>
               </a>
             ))}
@@ -106,58 +107,79 @@ export default function Contact() {
             ref={formRef} 
             onSubmit={handleSubmit(onSubmit)} 
             className="bg-card p-6 sm:p-8 rounded-2xl border border-slate-700/50 shadow-lg space-y-6"
+            noValidate
           >
             {/* Name */}
             <div>
               <input
+                id="name"
                 type="text"
                 placeholder="Your Name"
+                aria-invalid={errors.name ? "true" : "false"}
+                aria-describedby={errors.name ? "name-error" : undefined}
                 {...register('name', { required: 'Name is required' })}
-                className="w-full bg-background border border-slate-700 rounded-lg px-4 py-3 text-textMain focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                className="w-full bg-background border border-slate-700 rounded-lg px-4 py-3 text-textMain focus:outline-none focus:border-primary focus-ring transition-colors"
               />
-              {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
+              <div aria-live="polite">
+                {errors.name && <p id="name-error" className="text-red-400 text-sm mt-1">{errors.name.message}</p>}
+              </div>
             </div>
 
             {/* Email */}
             <div>
               <input
+                id="email"
                 type="email"
                 placeholder="Your Email"
+                aria-invalid={errors.email ? "true" : "false"}
+                aria-describedby={errors.email ? "email-error" : undefined}
                 {...register('email', { 
                   required: 'Email is required',
                   pattern: { value: /^\S+@\S+$/i, message: 'Invalid email address' }
                 })}
-                className="w-full bg-background border border-slate-700 rounded-lg px-4 py-3 text-textMain focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                className="w-full bg-background border border-slate-700 rounded-lg px-4 py-3 text-textMain focus:outline-none focus:border-primary focus-ring transition-colors"
               />
-              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
+              <div aria-live="polite">
+                {errors.email && <p id="email-error" className="text-red-400 text-sm mt-1">{errors.email.message}</p>}
+              </div>
             </div>
 
             {/* Subject */}
             <div>
               <input
+                id="subject"
                 type="text"
                 placeholder="Subject"
+                aria-invalid={errors.subject ? "true" : "false"}
+                aria-describedby={errors.subject ? "subject-error" : undefined}
                 {...register('subject', { required: 'Subject is required' })}
-                className="w-full bg-background border border-slate-700 rounded-lg px-4 py-3 text-textMain focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                className="w-full bg-background border border-slate-700 rounded-lg px-4 py-3 text-textMain focus:outline-none focus:border-primary focus-ring transition-colors"
               />
-              {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject.message}</p>}
+              <div aria-live="polite">
+                {errors.subject && <p id="subject-error" className="text-red-400 text-sm mt-1">{errors.subject.message}</p>}
+              </div>
             </div>
 
             {/* Message */}
             <div>
               <textarea
+                id="message"
                 placeholder="Your Message"
                 rows="5"
+                aria-invalid={errors.message ? "true" : "false"}
+                aria-describedby={errors.message ? "message-error" : undefined}
                 {...register('message', { 
                   required: 'Message is required',
                   maxLength: { value: 500, message: 'Maximum 500 characters allowed' }
                 })}
-                className="w-full bg-background border border-slate-700 rounded-lg px-4 py-3 text-textMain focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-y"
+                className="w-full bg-background border border-slate-700 rounded-lg px-4 py-3 text-textMain focus:outline-none focus:border-primary focus-ring transition-colors resize-y"
               />
               <p className="text-xs text-textSecondary text-right mt-1">
                 {messageChars.length}/500
               </p>
-              {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>}
+              <div aria-live="polite">
+                {errors.message && <p id="message-error" className="text-red-400 text-sm mt-1">{errors.message.message}</p>}
+              </div>
             </div>
 
             {/* Submit Button */}

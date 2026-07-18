@@ -12,7 +12,7 @@ export default function NavLinks({ activeSection, onClick }) {
             key={link}
             href={`#${id}`}
             onClick={onClick}
-            className={`transition-colors ${
+            className={`transition-colors focus-ring rounded-sm ${
               isActive
                 ? 'text-primary font-medium'
                 : 'text-textSecondary hover:text-primary'

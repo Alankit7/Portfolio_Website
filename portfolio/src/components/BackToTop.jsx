@@ -25,10 +25,10 @@ const BackToTop = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 p-3 bg-primary text-white rounded-full shadow-lg shadow-primary/30 hover:bg-blue-600 transition-colors"
+          className="fixed bottom-8 right-8 z-50 p-3 bg-primary text-white rounded-full shadow-lg shadow-primary/30 hover:bg-blue-600 transition-colors focus-ring"
           aria-label="Scroll to top"
         >
-          <FiArrowUp className="text-xl" />
+          <FiArrowUp className="text-xl" aria-hidden="true" />
         </motion.button>
       )}
     </AnimatePresence>
