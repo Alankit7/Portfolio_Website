@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiDownload, FiEye, FiFileText, FiCheckCircle, FiCalendar, FiX, FiExternalLink } from 'react-icons/fi';
 import { staggerContainer, fadeIn } from '../utils/motion';
 
 export default function Resume() {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const triggerRef = useRef(null);
+  const closeBtnRef = useRef(null);
 
-  // Close modal on Escape keypress
+  // Close modal on Escape keypress and manage focus
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -16,10 +18,13 @@ export default function Resume() {
 
     if (isPreviewOpen) {
       window.addEventListener('keydown', handleKeyDown);
-      // Lock background scroll
       document.body.style.overflow = 'hidden';
+      // Focus close button when opened
+      setTimeout(() => closeBtnRef.current?.focus(), 50);
     } else {
       document.body.style.overflow = '';
+      // Focus trigger button when closed
+      triggerRef.current?.focus();
     }
 
     return () => {
@@ -43,10 +48,12 @@ export default function Resume() {
       >
         {/* Left side — visual preview trigger */}
         <div 
-          className="relative w-full max-w-[280px] aspect-[1/1.4] bg-slate-100 rounded-lg shadow-inner overflow-hidden group cursor-pointer border border-slate-300 flex-shrink-0"
+          ref={triggerRef}
+          className="relative w-full max-w-[280px] aspect-[1/1.4] bg-slate-100 rounded-lg shadow-inner overflow-hidden group cursor-pointer border border-slate-300 flex-shrink-0 focus-ring"
           onClick={() => setIsPreviewOpen(true)}
           role="button"
           tabIndex={0}
+          aria-label="Open resume preview"
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
@@ -55,7 +62,7 @@ export default function Resume() {
           }}
         >
           {/* Skeleton-style mock document layout */}
-          <div className="absolute inset-0 p-6 flex flex-col gap-4">
+          <div aria-hidden="true" className="absolute inset-0 p-6 flex flex-col gap-4">
             <div className="h-6 bg-slate-300 rounded w-3/4 mx-auto mb-2"></div>
             <div className="h-2 bg-slate-300 rounded w-full"></div>
             <div className="h-2 bg-slate-300 rounded w-5/6"></div>
@@ -107,11 +114,11 @@ export default function Resume() {
               href="/resume.pdf" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="px-6 py-3 border border-slate-700 text-textMain rounded-lg hover:border-primary transition-colors flex items-center gap-2"
+              className="px-6 py-3 border border-slate-700 text-textMain rounded-lg hover:border-primary transition-colors flex items-center gap-2 focus-ring"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <FiExternalLink /> Open in Tab
+              <FiExternalLink aria-hidden="true" /> Open in Tab
             </motion.a>
           </div>
         </div>
@@ -125,6 +132,9 @@ export default function Resume() {
             onClick={() => setIsPreviewOpen(false)}
           >
             <motion.div 
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="resume-modal-title"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -132,13 +142,14 @@ export default function Resume() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center p-4 border-b border-slate-700/50 bg-card">
-                <h3 className="text-lg font-bold text-textMain">Resume Preview</h3>
+                <h3 id="resume-modal-title" className="text-lg font-bold text-textMain">Resume Preview</h3>
                 <button 
+                  ref={closeBtnRef}
                   onClick={() => setIsPreviewOpen(false)} 
                   aria-label="Close preview"
-                  className="text-textSecondary hover:text-white transition-colors"
+                  className="text-textSecondary hover:text-white transition-colors focus-ring rounded-sm"
                 >
-                  <FiX size={24} />
+                  <FiX size={24} aria-hidden="true" />
                 </button>
               </div>
               

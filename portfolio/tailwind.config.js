@@ -24,7 +24,7 @@ export default {
       colors: {
         background: '#0F172A',
         card: '#1E293B',
-        primary: '#3B82F6',
+        primary: '#60A5FA',
         textMain: '#F8FAFC',
         textSecondary: '#94A3B8',
       },

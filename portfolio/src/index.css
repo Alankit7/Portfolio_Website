@@ -23,7 +23,11 @@
     @apply bg-card rounded-2xl p-6 border border-slate-700/50 shadow-lg hover:shadow-glow transition-all duration-300;
   }
 
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
   .btn-primary {
-    @apply px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-blue-600 transition-colors duration-300 active:scale-95;
+    @apply px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-300 active:scale-95 focus-ring;
   }
 }

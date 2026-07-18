@@ -56,7 +56,7 @@ export default function ProjectCard({ project, index = 0 }) {
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-textSecondary hover:text-primary transition-colors flex items-center gap-1 text-sm font-medium"
+            className="text-textSecondary hover:text-primary transition-colors flex items-center gap-1 text-sm font-medium focus-ring rounded-sm"
           >
             <FiGithub size={18} /> Code
           </a>
@@ -65,7 +65,7 @@ export default function ProjectCard({ project, index = 0 }) {
               href={project.liveDemo}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-textSecondary hover:text-primary transition-colors flex items-center gap-1 text-sm font-medium"
+              className="text-textSecondary hover:text-primary transition-colors flex items-center gap-1 text-sm font-medium focus-ring rounded-sm"
             >
               <FiExternalLink size={18} /> Live Demo
             </a>
