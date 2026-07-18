@@ -1,0 +1,68 @@
+import { motion } from 'framer-motion';
+import { FiGithub, FiExternalLink } from 'react-icons/fi';
+
+export default function ProjectCard({ project }) {
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.3 }}
+      className="card overflow-hidden p-0 group flex flex-col h-full"
+    >
+      {/* Image wrapper */}
+      <div className="relative h-48 overflow-hidden">
+        <img
+          src={project.image}
+          alt={project.title}
+          loading="lazy"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+        {/* Featured badge */}
+        {project.featured && (
+          <span className="absolute top-4 left-4 bg-primary text-white text-xs px-3 py-1 rounded-full shadow-lg">
+            Featured
+          </span>
+        )}
+      </div>
+
+      {/* Content container */}
+      <div className="p-6 flex flex-col flex-grow">
+        <h3 className="text-xl font-bold text-textMain mb-2">{project.title}</h3>
+        <p className="text-textSecondary text-sm mb-6 flex-grow">{project.description}</p>
+        
+        {/* Tech chips */}
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project.technologies.map(tech => (
+            <span key={tech} className="bg-primary/10 text-primary text-xs px-3 py-1 rounded-full">
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        {/* Links row */}
+        <div className="flex gap-4 mt-auto pt-4 border-t border-slate-700/50">
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-textSecondary hover:text-primary transition-colors flex items-center gap-1 text-sm font-medium"
+          >
+            <FiGithub size={18} /> Code
+          </a>
+          {project.liveDemo && (
+            <a
+              href={project.liveDemo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-textSecondary hover:text-primary transition-colors flex items-center gap-1 text-sm font-medium"
+            >
+              <FiExternalLink size={18} /> Live Demo
+            </a>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
