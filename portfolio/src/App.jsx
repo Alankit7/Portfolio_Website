@@ -1,3 +1,4 @@
+import Navbar from './components/Navbar';
 import Hero from './sections/Hero';
 import About from './sections/About';
 import Skills from './sections/Skills';
@@ -8,15 +9,18 @@ import Footer from './sections/Footer';
 
 function App() {
   return (
-    <main>
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Experience />
-      <Contact />
-      <Footer />
-    </main>
+    <>
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Experience />
+        <Contact />
+        <Footer />
+      </main>
+    </>
   );
 }
 
